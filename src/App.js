@@ -20,7 +20,7 @@ class App extends React.Component {
     .then(res => res.json())
     .then(data => {
       this.setState({
-        quotes: data.quotes[0]
+        quotes: data.quotes
       })
     })
   }
@@ -39,10 +39,22 @@ class App extends React.Component {
 
 
   render() {
+    const quotes = this.state.quotes
+    const index = this.state.index
+    const quote = quotes[index]
+
     return (
       <div className="d-flex justify-content-center align-items-center vh-100">
         <div className="col-6 p-4 rounded" id="quote-box">
-          <p>Hello</p>
+          <p>
+            {
+              quote && 
+                <div>
+                  <p className="fw-bold" id="text">{quote.quote}</p>
+                  <cite id="author">- {quote.author}</cite>
+                </div>
+            }
+          </p>
 
           <div className="d-flex justify-content-between align-items-center mt-4">
             <a 
