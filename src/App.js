@@ -25,7 +25,19 @@ class App extends React.Component {
     })
   }
 
-  
+
+  getRandomIndex = () => {
+    const quotes = this.state.quotes
+
+    if(quotes.length > 0) {
+      const index = Math.floor(Math.random() * quotes.length)
+      this.setState({
+        index
+      })
+    }
+  }
+
+
   render() {
     return (
       <div className="d-flex justify-content-center align-items-center vh-100">
@@ -35,13 +47,16 @@ class App extends React.Component {
           <div className="d-flex justify-content-between align-items-center mt-4">
             <a 
             className="btn btn-primary p-1" 
-            target="_blank" 
+            target="_blank"
+            rel="noreferrer" 
             href="https://www.twitter.com/intent/tweet" 
             id="tweet-quote">
               <i className="fa fa-twitter"/> Tweet
             </a>
 
-            <button className="btn btn-primary p-1" id="new-quote">New Quote</button>
+            <button className="btn btn-primary p-1" id="new-quote" onClick={this.getRandomIndex}>
+              New Quote 
+            </button>
           </div>
         </div>
       </div>
